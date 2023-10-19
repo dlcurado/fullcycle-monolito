@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  monolitoapp:
+    image: node:latest
+    container_name: monolitoapp
+    volumes:
+      - ./monolitoapp:/usr/src/app
+    tty: true
