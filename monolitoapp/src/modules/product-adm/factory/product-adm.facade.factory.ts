@@ -8,7 +8,7 @@ export default class ProductAdmFacadeFactory {
   static create(): ProductAdmFacadeInterface {
     const repository = new ProductRepository();
     const addProductUseCase = new AddProductUseCase(repository);
-    const checkStockUseCase = new CheckStockUseCase();
+    const checkStockUseCase = new CheckStockUseCase(repository);
     const productFacade = new ProductAdmFacade({
       addUseCase: addProductUseCase,
       checkStockUseCase: checkStockUseCase,

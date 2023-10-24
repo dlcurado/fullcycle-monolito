@@ -5,12 +5,11 @@ import { ProductModel } from "./product.model";
 
 export default class ProductRepository implements ProductGateway {
   async add(product: Product): Promise<void> {
-    console.log(product);
     await ProductModel.create({
       id: product.id.id,
       name: product.name,
       description: product.description,
-      purchasedPrice: product.purchasedPrice,
+      purchasePrice: product.purchasePrice,
       stock: product.stock,
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -19,7 +18,7 @@ export default class ProductRepository implements ProductGateway {
 
   async find(id: string): Promise<Product> {
     const product = await ProductModel.findOne({
-      where: { id }
+      where: { id: id }
     });
 
     if(!product) {
@@ -30,7 +29,7 @@ export default class ProductRepository implements ProductGateway {
       id: new Id(product.id),
       name: product.name,
       description: product.description,
-      purchasedPrice: product.purchasedPrice,
+      purchasePrice: product.purchasePrice,
       stock: product.stock,
       createdAt: product.createdAt,
       updatedAt: product.updatedAt
