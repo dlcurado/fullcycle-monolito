@@ -6,12 +6,12 @@ import StoreCatalogFacadeInterface from "../../../store-catalog/facade/store-cat
 import Client from "../../domain/client.entity";
 import Order from "../../domain/order.entity";
 import Product from "../../domain/product.entity";
-import { AddPlaceOrderInputDto, AddPlaceOrderOutputDto } from "./add-place-order.dto";
+import { AddOrderInputDto, AddOrderOutputDto } from "./add-order.dto";
 import { PaymentFacadeInterface } from "../../../payment/facade/payment.facade.interface";
 import InvoiceFacadeInterface from "../../../invoice/facade/invoice.facade.interaface";
 import CheckoutGateway from "../../gateway/checkout.gateway";
 
-export default class AddPlaceOrderUseCase implements UseCaseInterface {
+export default class AddOrderUseCase implements UseCaseInterface {
   constructor(
     private clientFacade: ClientAdmFacadeInterface,
     private productFacade: ProductAdmFacadeInterface,
@@ -21,7 +21,7 @@ export default class AddPlaceOrderUseCase implements UseCaseInterface {
     private repository: CheckoutGateway
   ){}
 
-  async execute(input: AddPlaceOrderInputDto): Promise<AddPlaceOrderOutputDto> {
+  async execute(input: AddOrderInputDto): Promise<AddOrderOutputDto> {
     // Busca o cliente
     const client = await this.clientFacade.find({ id: input.clientId });
     
@@ -102,7 +102,7 @@ export default class AddPlaceOrderUseCase implements UseCaseInterface {
     }
   }
   
-  private async validateProducts(input: AddPlaceOrderInputDto): Promise<void> {
+  private async validateProducts(input: AddOrderInputDto): Promise<void> {
     if(input.products.length === 0){
       throw new Error("No products selected.");
     }

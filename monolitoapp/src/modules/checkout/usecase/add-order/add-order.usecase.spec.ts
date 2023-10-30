@@ -1,6 +1,6 @@
 import { DatabaseError } from "sequelize";
-import { AddPlaceOrderInputDto } from "./add-place-order.dto";
-import AddPlaceOrderUseCase from "./add-place-order.usecase";
+import { AddOrderInputDto } from "./add-order.dto";
+import AddOrderUseCase from "./add-order.usecase";
 import Product from "../../domain/product.entity";
 import Id from "../../../@shared/domain/value-object/id.value-object";
 
@@ -9,10 +9,10 @@ const mockDate = new Date(2000, 1, 1);
 describe("Place order use case unit test", () => {
   describe("validateProducts methods", () => {
     //@ts-expect-error - no params in constructor
-    const placeOrderUseCase = new AddPlaceOrderUseCase();
+    const placeOrderUseCase = new AddOrderUseCase();
 
     it("should throw an Error when products does not excists", async() => {
-      const product: AddPlaceOrderInputDto = {
+      const product: AddOrderInputDto = {
         clientId: "0",
         products: []
       }
@@ -35,7 +35,7 @@ describe("Place order use case unit test", () => {
       //@ts-expect-error - force set clientFacade
       placeOrderUseCase["productFacade"] = mockProductFacade;
 
-      let input: AddPlaceOrderInputDto= {
+      let input: AddOrderInputDto= {
         clientId: "1",
         products: [{ productId: "1" }]
       };
@@ -77,7 +77,7 @@ describe("Place order use case unit test", () => {
     });
 
     //@ts-expect-error - no params in constructor
-    const placeOrderUseCase = new AddPlaceOrderUseCase();
+    const placeOrderUseCase = new AddOrderUseCase();
 
     it("should throw error when product not found", async () => {
       const mockCatalogFacade = {
@@ -117,7 +117,7 @@ describe("Place order use case unit test", () => {
   });
 
 
-  describe("place order", () => {
+  describe("Order", () => {
     const clientProps = {
       id: "1",
       name: "Client 1",
@@ -151,7 +151,7 @@ describe("Place order use case unit test", () => {
     };
 
 
-    const placeOrderUseCase = new AddPlaceOrderUseCase(
+    const placeOrderUseCase = new AddOrderUseCase(
       mockClientFacade,
       null,
       null,
@@ -200,7 +200,7 @@ describe("Place order use case unit test", () => {
         updatedAt: new Date(),
       });
 
-      const input: AddPlaceOrderInputDto = {
+      const input: AddOrderInputDto = {
         clientId: "1c",
         products: [{ productId: "1"}, { productId: "2"}]
       };
@@ -244,7 +244,7 @@ describe("Place order use case unit test", () => {
         updatedAt: new Date(),
       });
 
-      const input: AddPlaceOrderInputDto = {
+      const input: AddOrderInputDto = {
         clientId: "1c",
         products: [{ productId: "1"}, { productId: "2"}]
       };

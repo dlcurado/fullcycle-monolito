@@ -1,11 +1,11 @@
-export interface AddPlaceOrderInputDto {
+export interface AddOrderFacadeInputDto {
   clientId: string;
   products: {
     productId?: string;
   }[];
 }
 
-export interface AddPlaceOrderOutputDto {
+export interface AddOrderFacadeOutputDto {
   id: string;
   invoiceId: string;
   status: string;

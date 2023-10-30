@@ -50,7 +50,7 @@ describe("Product repository integrated test", () => {
   it("should find a product", async () => {
     const _id = "123456";
 
-    ProductModel.create({
+    await ProductModel.create({
       id: _id,
       name: "Name 1",
       description: "Description 1",

@@ -4,9 +4,8 @@ import Id from "../../@shared/domain/value-object/id.value-object";
 import Client from "./client.entity";
 import Product from "./product.entity";
 
-type ProductProps = {
+type OrderProps = {
   id?: Id;
-  invoiceId?: string;
   client: Client;
   products: Product[];
   status?: string;
@@ -15,14 +14,12 @@ type ProductProps = {
 };
 
 export default class Order extends BaseEntity implements AggregateRoot {
-  private _invoiceId: string;
   private _client: Client;
   private _products: Product[];
   private _status: string;
   
-  constructor(props: ProductProps){
+  constructor(props: OrderProps){
     super(props.id, props.createdAt, props.updatedAt);
-    this._invoiceId = props.invoiceId;
     this._client = props.client;
     this._products = props.products;
     this._status = props.status || "pending";
@@ -30,10 +27,6 @@ export default class Order extends BaseEntity implements AggregateRoot {
   }
   approved() {
     this._status = "approved";
-  }
-
-  get invoiceId(): string {
-    return this._invoiceId;
   }
 
   get client(): Client {
