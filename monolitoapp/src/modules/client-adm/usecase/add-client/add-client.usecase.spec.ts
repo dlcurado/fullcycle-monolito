@@ -13,7 +13,13 @@ describe("Add Client use case unit test", () => {
     const input = {
       name: "Client 1",
       email: "client1@email.com",
-      address: "Address Client 1"
+      document: "",
+      street: "Address Client 1",
+      number: "",
+      complement: "",
+      city: "",
+      state: "",
+      zipCode: "",
     };
 
     const result = await useCase.execute(input);
@@ -30,7 +36,13 @@ describe("Add Client use case unit test", () => {
       id: "1",
       name: "Client 1",
       email: "client1@email.com",
-      address: "Address Client 1"
+      document: "",
+      street: "Address Client 1",
+      number: "",
+      complement: "",
+      city: "",
+      state: "",
+      zipCode: "",
     };
 
     const result = await useCase.execute(input);

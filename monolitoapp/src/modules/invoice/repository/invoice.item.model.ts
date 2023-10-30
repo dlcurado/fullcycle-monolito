@@ -13,7 +13,7 @@ export class InvoiceItemModel extends Model {
 
   @ForeignKey(() => InvoiceModel)
   @Column
-  idInvoice: string;
+  invoiceId: string;
 
   @BelongsTo(() => InvoiceModel)
   invoice: InvoiceModel;

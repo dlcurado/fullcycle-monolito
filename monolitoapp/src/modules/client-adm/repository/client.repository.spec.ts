@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize-typescript";
 import { ClientModel } from "./client.model";
-import Client from "../domain/client.entity";
+import ClientAdm from "../domain/client.entity";
 import ClientRepository from "./client.repository";
 import Id from "../../@shared/domain/value-object/id.value-object";
 
@@ -24,11 +24,17 @@ describe("Client repository integrated test", () => {
   });
 
   it("should create a client", async () => {
-    const input = new Client({
+    const input = new ClientAdm({
       id: new Id("1"),
       name: "Name 1",
       email: "client1@email.com",
-      address: "Address 1",
+      document: "",
+      street: "Address 1",
+      number: "",
+      complement: "",
+      city: "",
+      state: "",
+      zipCode: "",
       createdAt: new Date(),
       updatedAt: new Date(),
     })
@@ -41,7 +47,7 @@ describe("Client repository integrated test", () => {
     expect(client.id).toBe(input.id.id);
     expect(client.name).toBe(input.name);
     expect(client.email).toBe(input.email);
-    expect(client.address).toBe(input.address);
+    expect(client.street).toBe(input.street);
     expect(client.createdAt).toStrictEqual(input.createdAt);
     expect(client.updatedAt).toStrictEqual(input.updatedAt);
   })
@@ -51,7 +57,13 @@ describe("Client repository integrated test", () => {
       id: "1",
       name: "Name 1",
       email: "client1@email.com",
-      address: "Address 1",
+      document: "",
+      street: "Address 1",
+      number: "",
+      complement: "",
+      city: "",
+      state: "",
+      zipCode: "",
       createdAt: new Date(),
       updatedAt: new Date(),
     })
@@ -63,6 +75,6 @@ describe("Client repository integrated test", () => {
     expect(result.id.id).toBe(client.id);
     expect(result.name).toBe(client.name);
     expect(result.email).toBe(client.email);
-    expect(result.address).toBe(client.address);
+    expect(result.street).toBe(client.street);
   })
 });

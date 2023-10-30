@@ -1,21 +1,27 @@
 import Id from "../../@shared/domain/value-object/id.value-object";
-import Client from "../domain/client.entity";
+import ClientAdm from "../domain/client.entity";
 import ClientGateway from "../gateway/client.gateway";
 import { ClientModel } from "./client.model";
 
 export default class ClientRepository implements ClientGateway {
-  async add(client: Client): Promise<void> {
+  async add(client: ClientAdm): Promise<void> {
     await ClientModel.create({
       id: client.id.id,
       name: client.name,
       email: client.email,
-      address: client.address,
+      document: client.document,
+      street: client.street,
+      number: client.number,
+      complement: client.complement,
+      city: client.city,
+      state: client.state,
+      zipCode: client.zipCode,
       createdAt: client.createdAt,
       updatedAt: client.updatedAt,
     });
   }
 
-  async find(id: string): Promise<Client> {
+  async find(id: string): Promise<ClientAdm> {
     const client = await ClientModel.findOne({
       where: { id: id }
     });
@@ -24,11 +30,17 @@ export default class ClientRepository implements ClientGateway {
       throw new Error(`Client with id ${id} not found!`)
     }
 
-    return new Client({
+    return new ClientAdm({
       id: new Id(client.id),
       name: client.name,
       email: client.email,
-      address: client.address,
+      document: client.document,
+      street: client.street,
+      number: client.number,
+      complement: client.complement,
+      city: client.city,
+      state: client.state,
+      zipCode: client.zipCode,
       createdAt: client.createdAt,
       updatedAt: client.updatedAt
     })

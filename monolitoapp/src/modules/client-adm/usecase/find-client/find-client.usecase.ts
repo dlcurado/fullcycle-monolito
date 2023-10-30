@@ -15,7 +15,7 @@ export default class FindClientUseCase implements UseCaseInterface {
       id: client.id.id,
       name: client.name,
       email: client.email,
-      address: client.address,
+      address: client.street,
       createdAt: client.createdAt,
       updatedAt: client.updatedAt,
     }

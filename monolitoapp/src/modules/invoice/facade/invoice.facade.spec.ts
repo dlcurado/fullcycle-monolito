@@ -45,7 +45,7 @@ describe("Ivoice Facade test", () => {
       updatedAt: new Date(),
     }
 
-    const result = await invoiceFacade.generate(input);
+    const result = await invoiceFacade.create(input);
 
     expect(result.id).toBeDefined();
     expect(result.name).toBe(input.name);
@@ -78,7 +78,7 @@ describe("Ivoice Facade test", () => {
       updatedAt: new Date(),
     }
 
-    const invoiceGenerated = await invoiceFacade.generate(input);
+    const invoiceGenerated = await invoiceFacade.create(input);
 
     const result = await invoiceFacade.find({
       id: invoiceGenerated.id

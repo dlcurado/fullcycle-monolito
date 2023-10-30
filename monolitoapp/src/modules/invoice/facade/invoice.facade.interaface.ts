@@ -2,5 +2,5 @@ import { FindInvoiceFacadeInputDto, FindInvoiceFacadeOutputDto, GenerateInvoiceF
 
 export default interface InvoiceFacadeInterface {
   find(id: FindInvoiceFacadeInputDto): Promise<FindInvoiceFacadeOutputDto>;
-  generate(invoice: GenerateInvoiceFacadeInputDto): Promise<GenerateInvoiceFacadeOutputDto>;
+  create(invoice: GenerateInvoiceFacadeInputDto): Promise<GenerateInvoiceFacadeOutputDto>;
 }
